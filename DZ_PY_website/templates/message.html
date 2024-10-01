@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали обращения</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ message.title }}</h1>
+        <p><strong>Имя:</strong> {{ message.name }}</p>
+        <p><strong>Email:</strong> {{ message.email }}</p>
+        <p><strong>Сообщение:</strong> {{ message.msg }}</p>
+        {% if message.answer %}
+            <p><strong>Ответ:</strong> {{ message.answer }}</p>
+        {% endif %}
+        <a href="/"><button>Назад на главную</button></a>
+    </div>
+</body>
+</html>

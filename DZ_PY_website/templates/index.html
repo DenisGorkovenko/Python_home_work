@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+    <h1>Добро пожаловать!</h1>
+    <p>Ваше сообщение было успешно отправлено! Вы можете повторно <a href="/contact">связаться с нами</a></p>
+        <form id="emailForm" action="/messages" method="POST">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Ваш email" required>
+            </div>
+            <button type="submit">Список обращений</button>
+        </form>
+        {% if messages|length > 0 %}
+            <h2>Список обращений</h2>
+            <ul>
+                {% for message in messages %}
+                    <li><a href="{{ url_for('message_detail', id=message.id) }}"><strong>{{ message.title }}</strong></a> {% if message.answer %} (Есть ответ) {% endif %} </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
